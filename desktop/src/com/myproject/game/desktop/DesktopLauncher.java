@@ -10,8 +10,6 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = TankGame.WIDTH;
         config.height = TankGame.HEIGHT;
-		int x = 100;
-		int y = 100;
         new LwjglApplication(new TankGame(), config);
 	}
 }
