@@ -21,13 +21,12 @@ public class GameScreen extends ScreenAdapter{
 	}
 	
 	public void update(float delta) {
-		world.update(delta);
 		updateTankDirection();
 	} 
 	
 	private void updateTankDirection(){
 		Tank tank = world.getTank();
-		Bullet  bullet = world.getBullet();
+//		Bullet  bullet = world.getBullet();
 		if(Gdx.input.isKeyPressed(Keys.DOWN)) {
             tank.setNextDirection(Tank.DIRECTION_DOWN);		
             tank.setNextImg("myTankDown.png");

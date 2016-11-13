@@ -1,5 +1,9 @@
 package com.myproject.game;
 
+import java.util.ArrayList;
+
+import com.badlogic.gdx.scenes.scene2d.Actor;
+
 public class Stage {
 	/*public static String[] STAGE = new String[]{
 		"#####################",
@@ -27,7 +31,9 @@ public class Stage {
 	
 	private int height;
 	private int width;
-	
+	private static ArrayList<Bullet> bullets;
+	private static Tank tank;
+	public static boolean clash ;
 	public Stage(){
         STAGE = new StringBuilder[19];
         STAGE[0] = new StringBuilder("#####################");
@@ -51,6 +57,9 @@ public class Stage {
         STAGE[18] = new StringBuilder("#####################");
         height = STAGE.length;
         width = STAGE[0].length();	
+        clash = false;
+        
+        bullets = new ArrayList<Bullet>();
 	}
 	
 	public int getHeight(){
@@ -77,7 +86,21 @@ public class Stage {
         return STAGE[r].charAt(c) == '$';
     }
 
-   /* public boolean clashedWall(int r,int c){
-		return 
-	}*/
+    public boolean hasExploreAt(int r, int c) {
+        return STAGE[r].charAt(c) == 'e';
+    }
+    
+//    public static void clashedWall(int r, int c){
+//    		clash = false;
+//    	if(c<STAGE.length && r<STAGE[0].length() && c>0 && r>0){
+//    		if(STAGE[c-1].charAt(r) == 'b'){
+//    			clash = true;
+//    		}
+//    		if(clash){
+//    			bullets = tank.getBulletList();
+//    			STAGE[c-1].setCharAt(r, 'e');
+//    			STAGE[c-1].setCharAt(r,'.');
+//    		}
+//    	}
+//    }
 }

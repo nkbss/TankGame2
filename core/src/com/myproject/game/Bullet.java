@@ -1,11 +1,14 @@
 package com.myproject.game;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Bullet {
 	private Vector2 positionBullet;
@@ -14,12 +17,12 @@ public class Bullet {
 	private Texture bulletImg;
 	World world;
 	private Tank tank;
-	public boolean clash ;
 	public static final int SPEED = 15;
 	private int currentDirection = 1;
 	public SpriteBatch batch;
 	private Sprite bulletSprite;
 	private Stage stage;
+	private ArrayList<Bullet> bullets;
 	private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
         {0,1},
@@ -34,12 +37,14 @@ public class Bullet {
     	batch = TankGame.batch;
     	currentDirection = tank.nextDirection;
     	this.tank = tank;
+    	bullets = new ArrayList<Bullet>();
     	bulletImg = new Texture(setBulletImg(currentDirection));
     	bulletSprite = new Sprite(bulletImg);
     	bulletSprite.setPosition(positionBullet.x-WorldRenderer.BLOCK_SIZE/2, TankGame.HEIGHT-positionBullet.y-WorldRenderer.BLOCK_SIZE/2);
     	posSpriteBullet = new Vector2();
     	posSpriteBullet.x = bulletSprite.getX();
     	posSpriteBullet.y = bulletSprite.getY();
+   
     }
 
 	public String setBulletImg(int dir) {
@@ -57,18 +62,17 @@ public class Bullet {
 		}
 	}
 
+	public void removeBullet(){
+		bullets = tank.getBulletList();
+		for(int i=0;i<bullets.size();i++){
+			bullets.remove(i);
+		}
+	}
 	public void update(){
 		posSpriteBullet.x += SPEED * DIR_OFFSETS[currentDirection][0];
 	    posSpriteBullet.y += SPEED * DIR_OFFSETS[currentDirection][1];
-	 
-	}
-
-	public boolean clashWall(int r, int c){
-		if(stage.STAGE[r].charAt(c) == 'b'){
-			clash = false;
-		}
-		return clash;
-	}
+	    //world.clashedWall((int)posSpriteBullet.x/WorldRenderer.BLOCK_SIZE,TankGame.HEIGHT/WorldRenderer.BLOCK_SIZE-(int)posSpriteBullet.y/WorldRenderer.BLOCK_SIZE);   
+	 }
 	
 	public void render(){
 		update();
@@ -78,6 +82,14 @@ public class Bullet {
 		batch.begin();
 		bulletSprite.draw(batch);
 		batch.end();
+	}
+	
+	public float getX() {
+		return bulletSprite.getX();
+	}
+	
+	public float getY() {
+		return bulletSprite.getY();
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 public class Tank {
 	private Vector2 position;
@@ -20,8 +21,10 @@ public class Tank {
     private Bullet bullet;
     public int currentDirection;
     public int nextDirection;
-    private ArrayList<Bullet> bullets;
+    ArrayList <Bullet> bullets;
+    private int MAX_BULLETS;
     World world;
+	//private Sprite tankSprite;
     private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
         {0,-1},
@@ -31,12 +34,14 @@ public class Tank {
     };
     
     public Tank(int x, int y, Stage stage) {
-    	bullets = new ArrayList<Bullet>();
+    	bullets = new ArrayList <Bullet>();
         position = new Vector2(x,y);
+        MAX_BULLETS = 6;
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
         this.stage = stage;
         tankImg = "myTank.png";
+      //  tankSprite = new Sprite(tankImg);
     }    
  
     public Vector2 getPosition() {
@@ -54,6 +59,9 @@ public class Tank {
     }
     
 	private void shoot(){
+//	if(bullets.size() == MAX_BULLETS){
+//			return;
+//		}
 		bullets.add(new Bullet(this));
 	}
      
@@ -70,7 +78,7 @@ public class Tank {
 	        
 	    if(Gdx.input.isKeyJustPressed(Keys.Z)){
 			shoot();
-		}
+	    }
 	    for (Bullet bullet : bullets) {
 	    	bullet.render();
 	    }
@@ -100,4 +108,8 @@ public class Tank {
 	public String getNextImg(){
 			return tankImg;
 		}
+	
+	public ArrayList<Bullet> getBulletList() {
+		return bullets;
+	}
 }

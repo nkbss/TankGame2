@@ -33,7 +33,8 @@ public class WorldRenderer {
 	        stageRenderer.render();
 			batch = tankGame.batch;
 			tank.update();
-	        batch.begin();
+			batch.begin();
+			world.update();
 	        Vector2 posTank = world.getTank().getPosition();
 	        batch.draw(tankImg, posTank.x-BLOCK_SIZE/2,TankGame.HEIGHT-posTank.y-BLOCK_SIZE/2);
 	        batch.end();

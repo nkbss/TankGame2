@@ -11,6 +11,7 @@ public class StageRenderer {
 	private Texture brickImage;
 	private Texture MetalImage;
 	private Texture baseImage;
+	private Texture exploreImage;
 	public StageRenderer(SpriteBatch batch, Stage stage){
 	this.stage = stage;
 	this.batch = batch;
@@ -18,6 +19,7 @@ public class StageRenderer {
 	brickImage = new Texture("brick.png");
 	MetalImage = new Texture("metal.png");
 	baseImage = new Texture("base.png");
+	exploreImage = new Texture("explore.png");
 	}
 	
 	public void render(){
@@ -33,6 +35,8 @@ public class StageRenderer {
                 } else if(stage.hasMetalAt(r, c)) {
                     batch.draw(MetalImage, x, y);
                 }else if(stage.hasBaseAt(r, c)) {
+                    batch.draw(baseImage, x, y);
+                }else if(stage.hasExploreAt(r, c)) {
                     batch.draw(baseImage, x, y);
                 }
             }
