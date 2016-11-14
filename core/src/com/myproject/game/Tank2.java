@@ -1,5 +1,7 @@
 package com.myproject.game;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
@@ -7,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Tank2 {
 	
 	private Vector2 position;
-	private int nextDirection;
+	public int nextDirection;
 	private int currentDirection;
 	public static final int DIRECTION_UP = 1;
     public static final int DIRECTION_RIGHT = 2;
@@ -15,7 +17,8 @@ public class Tank2 {
     public static final int DIRECTION_LEFT = 4;
     public static final int DIRECTION_STILL = 0;
     public static final int SPEED = 5;
-	private static final int [][] DIR_OFFSETS = new int [][] {
+	ArrayList<Bullet2> bullets2;
+    private static final int [][] DIR_OFFSETS = new int [][] {
 	        {0,0},
 	        {0,-1},
 	        {1,0},
@@ -27,6 +30,7 @@ public class Tank2 {
 	
 	Tank2(int x, int y, Stage stage){
 		position = new Vector2(x,y);
+		bullets2 = new ArrayList<Bullet2>();
 	}
 	
 	Vector2 getPosition(){
@@ -61,6 +65,9 @@ public class Tank2 {
         return true;
     }
 	
+	public void shoot(){
+		bullets2.add(new Bullet2(this));
+	}
 	public void update() {
 		 if(isAtCenter()) {
 			 if(canMoveInDirection(nextDirection)) {
@@ -72,11 +79,15 @@ public class Tank2 {
 	        position.x += SPEED * DIR_OFFSETS[currentDirection][0];
 	        position.y += SPEED * DIR_OFFSETS[currentDirection][1];
 	        
-//	    if(Gdx.input.isKeyJustPressed(Keys.NUM_0)){
-//			shoot();
-//	    }
-//	    for (Bullet bullet : bullets) {
-//	    	bullet.render();
-//	    }
+	    if(Gdx.input.isKeyJustPressed(Keys.G)){
+			shoot();
+	    }
+	    for (Bullet2 bullet2 : bullets2) {
+	    	bullet2.render();
+	    }
 	 }
+
+	public ArrayList<Bullet2> getBullet2List() {
+		return bullets2;
+	}
 }

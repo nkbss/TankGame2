@@ -40,7 +40,9 @@ public class Bullet {
     	bullets = new ArrayList<Bullet>();
     	bulletImg = new Texture(setBulletImg(currentDirection));
     	bulletSprite = new Sprite(bulletImg);
-    	bulletSprite.setPosition(positionBullet.x-WorldRenderer.BLOCK_SIZE/2, TankGame.HEIGHT-positionBullet.y-WorldRenderer.BLOCK_SIZE/2);
+    	bulletSprite.setPosition(positionBullet.x-WorldRenderer.BLOCK_SIZE/2, 
+    			TankGame.HEIGHT-positionBullet.y-WorldRenderer.BLOCK_SIZE/2);
+    	
     	posSpriteBullet = new Vector2();
     	posSpriteBullet.x = bulletSprite.getX();
     	posSpriteBullet.y = bulletSprite.getY();
@@ -65,7 +67,6 @@ public class Bullet {
 	public void update(){
 		posSpriteBullet.x += SPEED * DIR_OFFSETS[currentDirection][0];
 	    posSpriteBullet.y += SPEED * DIR_OFFSETS[currentDirection][1];
-	    //world.clashedWall((int)posSpriteBullet.x/WorldRenderer.BLOCK_SIZE,TankGame.HEIGHT/WorldRenderer.BLOCK_SIZE-(int)posSpriteBullet.y/WorldRenderer.BLOCK_SIZE);   
 	 }
 	
 	public void render(){

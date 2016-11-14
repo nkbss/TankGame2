@@ -17,12 +17,9 @@ public class Tank {
     public static final int SPEED = 5;
     public Stage stage;
     private String tankImg;
-    private String nextImg;
-    private Bullet bullet;
     public int currentDirection;
     public int nextDirection;
     ArrayList <Bullet> bullets;
-    private int MAX_BULLETS;
     World world;
 	//private Sprite tankSprite;
     private static final int [][] DIR_OFFSETS = new int [][] {
@@ -36,7 +33,6 @@ public class Tank {
     public Tank(int x, int y, Stage stage) {
     	bullets = new ArrayList <Bullet>();
         position = new Vector2(x,y);
-        MAX_BULLETS = 6;
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
         this.stage = stage;
@@ -73,7 +69,7 @@ public class Tank {
 	        position.x += SPEED * DIR_OFFSETS[currentDirection][0];
 	        position.y += SPEED * DIR_OFFSETS[currentDirection][1];
 	        
-	    if(Gdx.input.isKeyJustPressed(Keys.NUM_0)){
+	    if(Gdx.input.isKeyJustPressed(Keys.L)){
 			shoot();
 	    }
 	    for (Bullet bullet : bullets) {
