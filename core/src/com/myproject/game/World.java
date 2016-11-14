@@ -4,14 +4,12 @@ import java.util.ArrayList;
 
 public class World {
 	private static Tank tank;
-	private static Stage stage;
-	private Bullet bullet; 
+	private static Stage stage; 
 	private static ArrayList<Bullet> bullets;
 	
 	World(TankGame TankGame) {
 		tank = new Tank(425,875,stage);
 		stage = new Stage();
-		//bullet = new Bullet(tank);
 		bullets = new ArrayList<Bullet>();
 	}
 	
@@ -33,7 +31,7 @@ public class World {
 				}
 				//clashBase
 				if (stage.STAGE[c-1].charAt(r) == '$'){
-					System.out.print("clash base");
+
 					stage.STAGE[c-1].setCharAt(r,'e');
 					bullets.remove(i);
 				}
@@ -43,7 +41,6 @@ public class World {
 	}
     
     public void update() {
-    	//System.out.println(tank.getPosition());
     	bullets = tank.getBulletList();
     	for (int i = 0; i < bullets.size(); i++) {
     		Bullet b = bullets.get(i);
@@ -60,13 +57,9 @@ public class World {
 	       return tank;
 	    }
 	 
-	 static Stage getStage(){
+	 
+	 Stage getStage(){
 		 return stage;
 	 }
-	 
-//	 Bullet getBullet(){
-//		 return bullet;
-//	 }
-	 
 	 
 }
