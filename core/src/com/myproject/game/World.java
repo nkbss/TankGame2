@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class World {
 	private static Tank tank;
 	private static Stage stage;
-	private Bullet bullet;
-	private static Boolean clash;
+	private Bullet bullet; 
 	private static ArrayList<Bullet> bullets;
 	
 	World(TankGame TankGame) {
@@ -17,21 +16,34 @@ public class World {
 	}
 	
     public void clashedWall(int r, int c, int i){
-		clash = false;
 		stage = getStage();
-			if(c < Stage.STAGE.length && r < stage.STAGE.length && c>0 && r>0) {
+			if(c <= TankGame.HEIGHT/50 && r <= TankGame.WIDTH/50 && c>=0 && r>=0) {
+				//clashWall
 				if(stage.STAGE[c-1].charAt(r) == 'b'){
-					clash = true;
-				}
-				if(clash){
-					stage.STAGE[c-1].setCharAt(r, 'e');
 					stage.STAGE[c-1].setCharAt(r,'.');
 					bullets.remove(i);
 				}
+				// clashEdge
+				if (stage.STAGE[c-1].charAt(r) == '#'){
+					bullets.remove(i);
+				}
+				// clashMetal
+				if (stage.STAGE[c-1].charAt(r) == 'S'){
+					bullets.remove(i);
+				}
+				//clashBase
+				if (stage.STAGE[c-1].charAt(r) == '$'){
+					System.out.print("clash base");
+					stage.STAGE[c-1].setCharAt(r,'e');
+					bullets.remove(i);
+				}
+	
+				
 			}
 	}
     
     public void update() {
+    	//System.out.println(tank.getPosition());
     	bullets = tank.getBulletList();
     	for (int i = 0; i < bullets.size(); i++) {
     		Bullet b = bullets.get(i);

@@ -5,30 +5,8 @@ import java.util.ArrayList;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Stage {
-	/*public static String[] STAGE = new String[]{
-		"#####################",
-		"#...................#",
-		"#......bbbbbbb......#",
-		"#...bb.........bb...#",
-		"#...bb.........bb...#",
-		"#...bb..b.b.b..bb...#",
-		"#...bb..bSSSb..bb...#",
-		"#...bb..bSSSb..bb...#",
-		"#....bb...b...bb....#",
-		"#.........b.........#",
-		"#SS....bb...bb....SS#",
-		"#.....bbbbbbbbb.....#",
-		"#...................#",
-		"#..bbb..bbbbb..bbb..#",
-		"#........bbb........#",
-		"#.....bb.....bb.....#",
-		"#........bbb........#",
-		"#........b$b........#",
-		"#####################",
-	};*/
-	
+
 	public static StringBuilder STAGE[];
-	
 	private int height;
 	private int width;
 	private static ArrayList<Bullet> bullets;

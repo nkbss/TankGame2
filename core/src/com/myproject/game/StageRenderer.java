@@ -37,7 +37,7 @@ public class StageRenderer {
                 }else if(stage.hasBaseAt(r, c)) {
                     batch.draw(baseImage, x, y);
                 }else if(stage.hasExploreAt(r, c)) {
-                    batch.draw(baseImage, x, y);
+                    batch.draw(exploreImage, x, y);
                 }
             }
         }

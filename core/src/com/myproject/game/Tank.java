@@ -59,9 +59,6 @@ public class Tank {
     }
     
 	private void shoot(){
-//	if(bullets.size() == MAX_BULLETS){
-//			return;
-//		}
 		bullets.add(new Bullet(this));
 	}
      
