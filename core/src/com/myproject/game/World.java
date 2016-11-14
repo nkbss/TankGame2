@@ -102,6 +102,7 @@ public class World {
     	bullets2 = tank2.getBullet2List();
     	checkClashBullet1(bullets);
     	checkClashBullet2(bullets2);
+    	tank.update();
     }
 	 
 	Tank getTank() {

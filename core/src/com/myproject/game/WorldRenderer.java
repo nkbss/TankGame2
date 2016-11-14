@@ -32,17 +32,18 @@ public class WorldRenderer {
 	}
 	
 	public void render(float delta) {
-	        tankImg = new Texture(tank.getNextImg());
+	        //tankImg = new Texture(tank.getNextImg());
 	        tank2Img = new Texture("myTankDown.png");
 	        stageRenderer.render();
 			batch = tankGame.batch;
-			tank.update();
+//			tank.update();
 			tank2.update();
 			batch.begin();
+			tank.render();
 			world.update();
-	        Vector2 posTank = world.getTank().getPosition();
+			//Vector2 posTank = world.getTank().getPosition();
 	        Vector2 posTank2 = world.getTank2().getPosition();
-	        batch.draw(tankImg, posTank.x-BLOCK_SIZE/2,TankGame.HEIGHT-posTank.y-BLOCK_SIZE/2);
+	        //batch.draw(tankImg, posTank.x-BLOCK_SIZE/2,TankGame.HEIGHT-posTank.y-BLOCK_SIZE/2);
 	        batch.draw(tank2Img,posTank2.x-BLOCK_SIZE/2,TankGame.HEIGHT-posTank2.y-BLOCK_SIZE/2);
 	        batch.end();
 	}
