@@ -62,12 +62,6 @@ public class Bullet {
 		}
 	}
 
-	public void removeBullet(){
-		bullets = tank.getBulletList();
-		for(int i=0;i<bullets.size();i++){
-			bullets.remove(i);
-		}
-	}
 	public void update(){
 		posSpriteBullet.x += SPEED * DIR_OFFSETS[currentDirection][0];
 	    posSpriteBullet.y += SPEED * DIR_OFFSETS[currentDirection][1];
@@ -76,7 +70,7 @@ public class Bullet {
 	
 	public void render(){
 		update();
-    	bulletSprite.setPosition(posSpriteBullet.x,posSpriteBullet.y);
+		bulletSprite.setPosition(posSpriteBullet.x,posSpriteBullet.y);
 		bulletImg = new Texture(setBulletImg(currentDirection));
 		batch = TankGame.batch;
 		batch.begin();

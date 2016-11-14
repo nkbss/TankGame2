@@ -73,7 +73,7 @@ public class Tank {
 	        position.x += SPEED * DIR_OFFSETS[currentDirection][0];
 	        position.y += SPEED * DIR_OFFSETS[currentDirection][1];
 	        
-	    if(Gdx.input.isKeyJustPressed(Keys.Z)){
+	    if(Gdx.input.isKeyJustPressed(Keys.NUM_0)){
 			shoot();
 	    }
 	    for (Bullet bullet : bullets) {

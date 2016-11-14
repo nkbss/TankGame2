@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 public class World {
 	private static Tank tank;
+	private static Tank2 tank2;
 	private static Stage stage; 
 	private static ArrayList<Bullet> bullets;
+	private static Bullet bullet;
 	
 	World(TankGame TankGame) {
 		tank = new Tank(425,875,stage);
+		tank2 = new Tank2(75,225,stage);
 		stage = new Stage();
 		bullets = new ArrayList<Bullet>();
 	}
@@ -42,15 +45,16 @@ public class World {
     
     public void update() {
     	bullets = tank.getBulletList();
+    	
     	for (int i = 0; i < bullets.size(); i++) {
     		Bullet b = bullets.get(i);
     		clashedWall((int)b.getX()/WorldRenderer.BLOCK_SIZE,
-    				
-    				TankGame.HEIGHT/WorldRenderer.BLOCK_SIZE
-    				-(int)b.getY()/WorldRenderer.BLOCK_SIZE,
-    				
+   				
+   				TankGame.HEIGHT/WorldRenderer.BLOCK_SIZE
+   				-(int)b.getY()/WorldRenderer.BLOCK_SIZE,
+   				
     				i);
-    	}
+    		}
     }
 	 
 	Tank getTank() {
@@ -62,4 +66,7 @@ public class World {
 		 return stage;
 	 }
 	 
+	 Tank2 getTank2(){
+		 return tank2;
+	 }
 }

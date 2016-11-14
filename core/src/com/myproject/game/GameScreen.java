@@ -22,6 +22,7 @@ public class GameScreen extends ScreenAdapter{
 	
 	public void update(float delta) {
 		updateTankDirection();
+		updateTank2Direction();
 	} 
 	
 	private void updateTankDirection(){
@@ -49,8 +50,24 @@ public class GameScreen extends ScreenAdapter{
         }
 	}
 	
-		private void gameKeysTank2(){
+		private void updateTank2Direction(){
+			Tank2 tank2 = world.getTank2();
 			
+			if(Gdx.input.isKeyPressed(Keys.W)){
+					tank2.setNextDirection(Tank2.DIRECTION_UP);
+			}
+			
+			if(Gdx.input.isKeyPressed(Keys.S)) {
+		            tank2.setNextDirection(Tank.DIRECTION_DOWN);
+		        }	
+		    
+			if(Gdx.input.isKeyPressed(Keys.D)) {
+		            tank2.setNextDirection(Tank.DIRECTION_RIGHT);
+		        }
+		        
+			if(Gdx.input.isKeyPressed(Keys.A)) {
+		            tank2.setNextDirection(Tank.DIRECTION_LEFT);
+		        }
 		}
 	
 		public void render(float delta) {
