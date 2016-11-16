@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Tank2 {
@@ -18,6 +22,11 @@ public class Tank2 {
     public static final int DIRECTION_STILL = 0;
     public static final int SPEED = 5;
 	ArrayList<Bullet2> bullets2;
+	private Texture tankTexture;
+	private Sprite tankSprite;
+	private Rectangle tankRect;
+	private String tankImg;
+	private SpriteBatch batch;
     private static final int [][] DIR_OFFSETS = new int [][] {
 	        {0,0},
 	        {0,-1},
@@ -31,6 +40,15 @@ public class Tank2 {
 	Tank2(int x, int y, Stage stage){
 		position = new Vector2(x,y);
 		bullets2 = new ArrayList<Bullet2>();
+		batch = TankGame.batch;
+		tankImg = "myTankDown.png";
+		tankTexture = new Texture(tankImg);
+	    tankSprite = new Sprite(tankTexture);
+	    tankSprite.setPosition(position.x - WorldRenderer.BLOCK_SIZE / 2,
+	        		TankGame.HEIGHT - position.y - WorldRenderer.BLOCK_SIZE / 2);
+	        
+	        tankRect = new Rectangle(tankSprite.getX(), tankSprite.getY(), tankSprite.getHeight(), tankSprite.getWidth());
+	        tankRect.setPosition(tankSprite.getX(), tankSprite.getY());
 	}
 	
 	Vector2 getPosition(){
@@ -86,8 +104,17 @@ public class Tank2 {
 	    	bullet2.render();
 	    }
 	 }
-
+	
 	public ArrayList<Bullet2> getBullet2List() {
 		return bullets2;
+	}
+
+	public void render(){
+		tankTexture = new Texture(tankImg);
+		tankSprite = new Sprite(tankTexture);
+        tankSprite.setPosition(position.x - WorldRenderer.BLOCK_SIZE / 2,
+        		TankGame.HEIGHT - position.y - WorldRenderer.BLOCK_SIZE / 2);
+        tankSprite.draw(batch);
+        tankRect.setPosition(tankSprite.getX(), tankSprite.getY());
 	}
 }

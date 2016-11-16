@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
@@ -23,6 +24,7 @@ public class Bullet {
 	private Sprite bulletSprite;
 	private Stage stage;
 	private ArrayList<Bullet> bullets;
+	private Rectangle bulletRect;
 	private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
         {0,1},
@@ -46,7 +48,8 @@ public class Bullet {
     	posSpriteBullet = new Vector2();
     	posSpriteBullet.x = bulletSprite.getX();
     	posSpriteBullet.y = bulletSprite.getY();
-   
+    	bulletRect =  new Rectangle (bulletSprite.getX(),bulletSprite.getY(),bulletSprite.getHeight(),bulletSprite.getWidth());
+    	bulletRect.setPosition(bulletSprite.getX(),bulletSprite.getY());
     }
 
 	public String setBulletImg(int dir) {
@@ -77,6 +80,7 @@ public class Bullet {
 		batch.begin();
 		bulletSprite.draw(batch);
 		batch.end();
+		bulletRect.setPosition(bulletSprite.getX(),bulletSprite.getY());
 	}
 	
 	public float getX() {

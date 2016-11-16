@@ -29,7 +29,6 @@ public class Tank {
 	private Texture tankTexture;
 	private SpriteBatch batch;
 	private Rectangle tankRect;
-	//private Sprite tankSprite;
     private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
         {0,-1},

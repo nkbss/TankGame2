@@ -104,6 +104,7 @@ public class World {
     	checkClashBullet2(bullets2);
     }
 	 
+
 	Tank getTank() {
 	       return tank;
 	    }
