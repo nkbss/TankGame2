@@ -19,7 +19,7 @@ public class Bullet2 {
 	private Stage stage;
 	private Tank2 tank2;
 	private ArrayList<Bullet2> bullets2;
-	private Rectangle bulletRect;
+	private Rectangle bullet2Rect;
 	public static final int SPEED = 15;
 	private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
@@ -44,8 +44,8 @@ public class Bullet2 {
     	positionSpriteBullet2 = new Vector2();
     	positionSpriteBullet2.x = bullet2Sprite.getX();
     	positionSpriteBullet2.y = bullet2Sprite.getY();
-    	bulletRect =  new Rectangle (bullet2Sprite.getX(),bullet2Sprite.getY(),bullet2Sprite.getHeight(),bullet2Sprite.getWidth());
-    	bulletRect.setPosition(bullet2Sprite.getX(),bullet2Sprite.getY());
+    	bullet2Rect =  new Rectangle (bullet2Sprite.getX(),bullet2Sprite.getY(),bullet2Sprite.getHeight(),bullet2Sprite.getWidth());
+    	bullet2Rect.setPosition(bullet2Sprite.getX(),bullet2Sprite.getY());
     }
     
     public String setBulletImg(int dir) {
@@ -76,6 +76,10 @@ public class Bullet2 {
 		return bullet2Sprite.getY();
 	}
     
+    public Rectangle getRect(){
+    	return bullet2Rect;
+    }
+    
     public void render(){
     	update();
     	bullet2Sprite.setPosition(positionSpriteBullet2.x, positionSpriteBullet2.y);
@@ -84,7 +88,7 @@ public class Bullet2 {
     	batch.begin();
     	bullet2Sprite.draw(batch);
     	batch.end();
-    	bulletRect.setPosition(bullet2Sprite.getX(),bullet2Sprite.getY());
+    	bullet2Rect.setPosition(bullet2Sprite.getX(),bullet2Sprite.getY());
     }
 
 

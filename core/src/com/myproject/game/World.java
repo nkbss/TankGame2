@@ -102,9 +102,60 @@ public class World {
     	bullets2 = tank2.getBullet2List();
     	checkClashBullet1(bullets);
     	checkClashBullet2(bullets2);
+    	bullets = tank.getBulletList();
+    	bullets2 = tank2.getBullet2List();	
+    	removeOnCollision();
     }
 	 
 
+    public void removeOnCollision(){
+    	
+    	//bullet vs bullet 
+    	for(int i = 0; i < bullets.size() ; i++){
+    		Bullet bullet1 = bullets.get(i);
+    		for(int j = 0 ; j < bullets2.size() ; j++){
+    			Bullet2 bullet2 = bullets2.get(j);
+    			
+    			if(bullet1.getRect().overlaps(bullet2.getRect())){
+    				bullets.remove(i);
+    				bullets2.remove(j);
+    			}
+    	//bullet vs tank
+//    			 if(bullet1.getRect().overlaps(tank2.getRect())){
+//    				bullets.remove(i);
+//    				tank.setNextImg("explore.png");
+//    			}
+//    			
+//    			 if(bullet2.getRect().overlaps(tank.getRect())){
+//    				bullets2.remove(j);
+//    				tank2.setNextImg("explore.png");
+//    			}
+    		
+    		}
+    		}
+    		for(int i = 0; i < bullets.size() ; i++){
+        		Bullet bullet1 = bullets.get(i);
+        			 
+        			if(bullet1.getRect().overlaps(tank2.getRect())){
+         				bullets.remove(i);
+         				tank2.setNextImg("explore.png");
+         			}
+    	
+        		
+        	}
+        
+    		for(int i = 0; i < bullets2.size() ; i++){
+        		Bullet2 bullet2 = bullets2.get(i);
+        			 
+        			if(bullet2.getRect().overlaps(tank.getRect())){
+         				bullets2.remove(i);
+         				tank.setNextImg("explore.png");
+         			}
+    	
+        		
+        	}
+    }
+    
 	Tank getTank() {
 	       return tank;
 	    }
@@ -118,5 +169,13 @@ public class World {
 		 return tank2;
 	 }
 	 
+	 public ArrayList<Bullet> getBulletAfterCollision() {
+			return bullets;
+		}
+	 
+	 public ArrayList<Bullet2> getBullet2AfterCollision() {
+			return bullets2;
+		}
+
 	 
 }

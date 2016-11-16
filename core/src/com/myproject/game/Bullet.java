@@ -91,4 +91,7 @@ public class Bullet {
 		return bulletSprite.getY();
 	}
 
+	public Rectangle getRect(){
+		return bulletRect;
+	}
 }

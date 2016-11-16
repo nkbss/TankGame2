@@ -121,6 +121,10 @@ public class Tank {
 		return bullets;
 	}
 	
+	public Rectangle getRect(){
+		return tankRect;
+	}
+	
 	public void render() {
 		tankTexture = new Texture(tankImg);
 		tankSprite = new Sprite(tankTexture);

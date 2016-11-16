@@ -24,7 +24,7 @@ public class Tank2 {
 	ArrayList<Bullet2> bullets2;
 	private Texture tankTexture;
 	private Sprite tankSprite;
-	private Rectangle tankRect;
+	private Rectangle tank2Rect;
 	private String tankImg;
 	private SpriteBatch batch;
     private static final int [][] DIR_OFFSETS = new int [][] {
@@ -47,8 +47,8 @@ public class Tank2 {
 	    tankSprite.setPosition(position.x - WorldRenderer.BLOCK_SIZE / 2,
 	        		TankGame.HEIGHT - position.y - WorldRenderer.BLOCK_SIZE / 2);
 	        
-	        tankRect = new Rectangle(tankSprite.getX(), tankSprite.getY(), tankSprite.getHeight(), tankSprite.getWidth());
-	        tankRect.setPosition(tankSprite.getX(), tankSprite.getY());
+	        tank2Rect = new Rectangle(tankSprite.getX(), tankSprite.getY(), tankSprite.getHeight(), tankSprite.getWidth());
+	        tank2Rect.setPosition(tankSprite.getX(), tankSprite.getY());
 	}
 	
 	Vector2 getPosition(){
@@ -109,12 +109,25 @@ public class Tank2 {
 		return bullets2;
 	}
 
+	public Rectangle getRect(){
+		return tank2Rect;
+	}
+	
+	public void setNextImg(String nextImg) {
+		this.tankImg = nextImg; 
+	}
+
+	public String getNextImg(){
+		return tankImg;
+	}
+	
 	public void render(){
 		tankTexture = new Texture(tankImg);
 		tankSprite = new Sprite(tankTexture);
         tankSprite.setPosition(position.x - WorldRenderer.BLOCK_SIZE / 2,
         		TankGame.HEIGHT - position.y - WorldRenderer.BLOCK_SIZE / 2);
         tankSprite.draw(batch);
-        tankRect.setPosition(tankSprite.getX(), tankSprite.getY());
+        tank2Rect.setPosition(tankSprite.getX(), tankSprite.getY());
 	}
+
 }
