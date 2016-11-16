@@ -67,17 +67,16 @@ public class Bullet {
 	public void update(){
 		posSpriteBullet.x += SPEED * DIR_OFFSETS[currentDirection][0];
 	    posSpriteBullet.y += SPEED * DIR_OFFSETS[currentDirection][1];
-	   
 	 }
 	
 	public void render(){
 		update();
 		bulletSprite.setPosition(posSpriteBullet.x,posSpriteBullet.y);
 		bulletImg = new Texture(setBulletImg(currentDirection));
-		//batch = TankGame.batch;
-		//batch.begin();
+		batch = TankGame.batch;
+		batch.begin();
 		bulletSprite.draw(batch);
-		//batch.end();
+		batch.end();
 	}
 	
 	public float getX() {

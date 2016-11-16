@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
@@ -20,16 +20,15 @@ public class Tank {
     public static final int DIRECTION_STILL = 0;
     public static final int SPEED = 5;
     public Stage stage;
-    private String tankImgString;
-    private Texture tankImg;
+    private String tankImg;
     public int currentDirection;
     public int nextDirection;
-    private Sprite tankSprite;
     ArrayList <Bullet> bullets;
-    ArrayList <Tank> tanks;
     World world;
-	private Vector2 posSpriteTank;
+	private Sprite tankSprite;
+	private Texture tankTexture;
 	private SpriteBatch batch;
+	private Rectangle tankRect;
 	//private Sprite tankSprite;
     private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
@@ -45,16 +44,16 @@ public class Tank {
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
         this.stage = stage;
+        
         batch = TankGame.batch;
-        tankImgString = "myTank.png";
-        tanks = new ArrayList<Tank>();
-        tankImg = new Texture(this.getNextImg());
-        tankSprite = new Sprite(tankImg);
-        tankSprite.setPosition(position.x-WorldRenderer.BLOCK_SIZE/2,
-        		TankGame.HEIGHT-position.y-WorldRenderer.BLOCK_SIZE/2);
-        posSpriteTank = new Vector2();
-        posSpriteTank.x = tankSprite.getX();
-        posSpriteTank.y = tankSprite.getY();
+        tankImg = "myTank.png";
+        tankTexture = new Texture(tankImg);
+        tankSprite = new Sprite(tankTexture);
+        tankSprite.setPosition(position.x - WorldRenderer.BLOCK_SIZE / 2,
+        		TankGame.HEIGHT - position.y - WorldRenderer.BLOCK_SIZE / 2);
+        
+        tankRect = new Rectangle(tankSprite.getX(), tankSprite.getY(), tankSprite.getHeight(), tankSprite.getWidth());
+        tankRect.setPosition(tankSprite.getX(), tankSprite.getY());
     }    
  
     public Vector2 getPosition() {
@@ -67,9 +66,8 @@ public class Tank {
    
     public boolean isAtCenter() {
         int blockSize = WorldRenderer.BLOCK_SIZE;
-        return ((((int)posSpriteTank.x - blockSize/2) % blockSize) == 0) &&
-                ((((int)posSpriteTank.y - blockSize/2) % blockSize) == 0);
-        
+        return ((((int)position.x - blockSize/2) % blockSize) == 0) &&
+                ((((int)position.y - blockSize/2) % blockSize) == 0);
     }
     
 	private void shoot(){
@@ -78,18 +76,15 @@ public class Tank {
      
 	 public void update() {
 		 if(isAtCenter()) {
-			// System.out.println("Hello");
 			 if(canMoveInDirection(nextDirection)) {
 				 currentDirection = nextDirection;    
 			 } else {
 				 currentDirection = DIRECTION_STILL;    
 	            }
 	        }
+	        position.x += SPEED * DIR_OFFSETS[currentDirection][0];
+	        position.y += SPEED * DIR_OFFSETS[currentDirection][1];
 	        
-		 	posSpriteTank.x += SPEED * DIR_OFFSETS[currentDirection][0];
-	        posSpriteTank.y += SPEED * DIR_OFFSETS[currentDirection][1];
-			System.out.println(posSpriteTank.x);
-			System.out.println(posSpriteTank.y);
 	    if(Gdx.input.isKeyJustPressed(Keys.L)){
 			shoot();
 	    }
@@ -99,11 +94,11 @@ public class Tank {
 	 }
 	 
 	 private int getRow() {
-	        return ((int)posSpriteTank.y) / WorldRenderer.BLOCK_SIZE; 
+	        return ((int)position.y) / WorldRenderer.BLOCK_SIZE; 
 	    }
 	 
 	 private int getColumn() {
-	        return ((int)posSpriteTank.x) / WorldRenderer.BLOCK_SIZE; 
+	        return ((int)position.x) / WorldRenderer.BLOCK_SIZE; 
 	    }
 	 
 	 private boolean canMoveInDirection(int dir) {
@@ -116,28 +111,23 @@ public class Tank {
 	    }
 
 	public void setNextImg(String nextImg) {
-			this.tankImgString = nextImg; 
+			this.tankImg = nextImg; 
 		}
 		
 	public String getNextImg(){
-			return tankImgString;
+			return tankImg;
 		}
 	
 	public ArrayList<Bullet> getBulletList() {
 		return bullets;
 	}
 	
-	public ArrayList<Tank> getTankList(){
-		return tanks;
-	}
-
-	public void render(){
-//		update();
-		tankSprite.setPosition(posSpriteTank.x,posSpriteTank.y);
-		tankImg = new Texture(getNextImg());
-		batch = TankGame.batch;
-		tankSprite.draw(batch);
-//		System.out.println(posSpriteTank.x);
-//		System.out.println(posSpriteTank.y);
+	public void render() {
+		tankTexture = new Texture(tankImg);
+		tankSprite = new Sprite(tankTexture);
+        tankSprite.setPosition(position.x - WorldRenderer.BLOCK_SIZE / 2,
+        		TankGame.HEIGHT - position.y - WorldRenderer.BLOCK_SIZE / 2);
+        tankSprite.draw(batch);
+        tankRect.setPosition(tankSprite.getX(), tankSprite.getY());
 	}
 }
