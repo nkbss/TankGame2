@@ -29,7 +29,9 @@ public class Tank {
 	private Texture tankTexture;
 	private SpriteBatch batch;
 	private Rectangle tankRect;
-    private static final int [][] DIR_OFFSETS = new int [][] {
+    private int Max_Bullet = 10;
+    private int countBullet = 0;
+	private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
         {0,-1},
         {1,0},
@@ -70,6 +72,7 @@ public class Tank {
     }
     
 	private void shoot(){
+		if(countBullet >= Max_Bullet)return;
 		bullets.add(new Bullet(this));
 	}
      
@@ -86,7 +89,9 @@ public class Tank {
 	        
 	    if(Gdx.input.isKeyJustPressed(Keys.L)){
 			shoot();
+			countBullet++;
 	    }
+	    
 	    for (Bullet bullet : bullets) {
 	    	bullet.render();
 	    }

@@ -27,6 +27,8 @@ public class Tank2 {
 	private Rectangle tank2Rect;
 	private String tankImg;
 	private SpriteBatch batch;
+    private int Max_Bullet = 10;
+	private int countBullet =0;
     private static final int [][] DIR_OFFSETS = new int [][] {
 	        {0,0},
 	        {0,-1},
@@ -84,8 +86,10 @@ public class Tank2 {
     }
 	
 	public void shoot(){
+		if(countBullet >= Max_Bullet)return;
 		bullets2.add(new Bullet2(this));
 	}
+	
 	public void update() {
 		 if(isAtCenter()) {
 			 if(canMoveInDirection(nextDirection)) {
@@ -99,6 +103,7 @@ public class Tank2 {
 	        
 	    if(Gdx.input.isKeyJustPressed(Keys.G)){
 			shoot();
+			countBullet++;
 	    }
 	    for (Bullet2 bullet2 : bullets2) {
 	    	bullet2.render();

@@ -9,18 +9,13 @@ import com.badlogic.gdx.math.Vector2;
 
 public class WorldRenderer {
 	private TankGame tankGame;
-	private Texture tankImg;
-	private Texture nextTankImg;
 	private Tank tank;
 	private Tank2 tank2;
-	private Texture tank2Img;
-	private Texture bulletImg;
-	private Bullet bullet;
 	public SpriteBatch batch;
 	public static final int BLOCK_SIZE = 50;
 	World world;
 	private StageRenderer stageRenderer;
-	private GameScreen gameScreen;
+
 	
 	public WorldRenderer(TankGame tankGame, World world) {
         this.tankGame = tankGame;
@@ -33,15 +28,12 @@ public class WorldRenderer {
 	
 	public void render(float delta) {
         stageRenderer.render();
-		batch = tankGame.batch;
 		tank.update();
 		tank2.update();
 		batch.begin();
 		world.update();
 		tank.render();
         tank2.render();
-//		Vector2 posTank2 = world.getTank2().getPosition();
-//        batch.draw(tank2Img,posTank2.x-BLOCK_SIZE/2,TankGame.HEIGHT-posTank2.y-BLOCK_SIZE/2);
         batch.end();
 	}
 }

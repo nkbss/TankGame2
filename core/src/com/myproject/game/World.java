@@ -22,26 +22,28 @@ public class World {
 		stage = getStage();
 			if(c <= TankGame.HEIGHT/50 && r <= TankGame.WIDTH/50 && c>=0 && r>=0) {
 				//clashWall
+				
 				if(stage.STAGE[c-1].charAt(r) == 'b'){
 					stage.STAGE[c-1].setCharAt(r,'.');
 					bullets.remove(i);
 				}
 				// clashEdge
+				
 				if (stage.STAGE[c-1].charAt(r) == '#'){
 					bullets.remove(i);
 				}
 				// clashMetal
+				
 				if (stage.STAGE[c-1].charAt(r) == 'S'){
 					bullets.remove(i);
 				}
 				//clashBase
+				
 				if (stage.STAGE[c-1].charAt(r) == '$'){
 
 					stage.STAGE[c-1].setCharAt(r,'e');
 					bullets.remove(i);
 				}
-	
-				
 			}
 	}
     
@@ -52,7 +54,6 @@ public class World {
   				if(stage.STAGE[c-1].charAt(r) == 'b'){
   					stage.STAGE[c-1].setCharAt(r,'.');
   					bullets2.remove(i);
-  					System.out.println("clash Wall");
   				}
   				// clashEdge
   				if (stage.STAGE[c-1].charAt(r) == '#'){
@@ -68,8 +69,6 @@ public class World {
   					stage.STAGE[c-1].setCharAt(r,'e');
   					bullets2.remove(i);
   				}
-  	
-  				
   			}
   	}
    
@@ -120,19 +119,8 @@ public class World {
     				bullets.remove(i);
     				bullets2.remove(j);
     			}
-    	//bullet vs tank
-//    			 if(bullet1.getRect().overlaps(tank2.getRect())){
-//    				bullets.remove(i);
-//    				tank.setNextImg("explore.png");
-//    			}
-//    			
-//    			 if(bullet2.getRect().overlaps(tank.getRect())){
-//    				bullets2.remove(j);
-//    				tank2.setNextImg("explore.png");
-//    			}
-    		
     		}
-    		}
+    	}
     		for(int i = 0; i < bullets.size() ; i++){
         		Bullet bullet1 = bullets.get(i);
         			 
@@ -151,8 +139,6 @@ public class World {
          				bullets2.remove(i);
          				tank.setNextImg("explore.png");
          			}
-    	
-        		
         	}
     }
     
