@@ -2,6 +2,9 @@ package com.myproject.game;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+
 public class World {
 	private static Tank tank;
 	private static Tank2 tank2;
@@ -9,13 +12,16 @@ public class World {
 	private static ArrayList<Bullet> bullets;
 	private static ArrayList<Bullet2> bullets2;
 	private static Bullet bullet;
-	
+	public static boolean checkGameOver = false;
+	public static boolean checkGameOver2 = false;
+	private Sound explore;
 	World(TankGame TankGame) {
 		tank = new Tank(425,875,stage);
 		tank2 = new Tank2(75,225,stage);
 		stage = new Stage();
 		bullets = new ArrayList<Bullet>();
 		bullets2 =new ArrayList<Bullet2>();
+		explore = Gdx.audio.newSound(Gdx.files.internal("explore.mp3"));
 	}
 	
     public void clashedWallBullet1(int r, int c, int i){
@@ -26,6 +32,7 @@ public class World {
 				if(stage.STAGE[c-1].charAt(r) == 'b'){
 					stage.STAGE[c-1].setCharAt(r,'.');
 					bullets.remove(i);
+					explore.play();
 				}
 				// clashEdge
 				
@@ -39,10 +46,18 @@ public class World {
 				}
 				//clashBase
 				
-				if (stage.STAGE[c-1].charAt(r) == '$'){
-
+				if (stage.STAGE[c-1].charAt(r) == '2'){
 					stage.STAGE[c-1].setCharAt(r,'e');
 					bullets.remove(i);
+					TankGameOver2();
+					explore.play();
+				}
+			
+				if (stage.STAGE[c-1].charAt(r) == '1'){
+					stage.STAGE[c-1].setCharAt(r,'e');
+					bullets.remove(i);
+					TankGameOver();
+					explore.play();
 				}
 			}
 	}
@@ -51,23 +66,36 @@ public class World {
   		stage = getStage();
   			if(c <= TankGame.HEIGHT/50 && r <= TankGame.WIDTH/50 && c>=0 && r>=0) {
   				//clashWall
+  				
   				if(stage.STAGE[c-1].charAt(r) == 'b'){
   					stage.STAGE[c-1].setCharAt(r,'.');
   					bullets2.remove(i);
+  					explore.play();
   				}
   				// clashEdge
+  				
   				if (stage.STAGE[c-1].charAt(r) == '#'){
   					bullets2.remove(i);
   				}
   				// clashMetal
+  				
   				if (stage.STAGE[c-1].charAt(r) == 'S'){
   					bullets2.remove(i);
   				}
   				//clashBase
-  				if (stage.STAGE[c-1].charAt(r) == '$'){
-
+  				
+  				if (stage.STAGE[c-1].charAt(r) == '1'){
   					stage.STAGE[c-1].setCharAt(r,'e');
   					bullets2.remove(i);
+  					TankGameOver();
+  					explore.play();
+  				}
+  			
+  				if (stage.STAGE[c-1].charAt(r) == '2'){
+  					stage.STAGE[c-1].setCharAt(r,'e');
+  					bullets2.remove(i);
+  					TankGameOver2();
+  					explore.play();
   				}
   			}
   	}
@@ -127,7 +155,8 @@ public class World {
         			if(bullet1.getRect().overlaps(tank2.getRect())){
          				bullets.remove(i);
          				tank2.setNextImg("explore.png");
-         			}
+         				TankGameOver2();
+        			}
     	
         		
         	}
@@ -138,7 +167,8 @@ public class World {
         			if(bullet2.getRect().overlaps(tank.getRect())){
          				bullets2.remove(i);
          				tank.setNextImg("explore.png");
-         			}
+         				TankGameOver();
+        			}
         	}
     }
     
@@ -163,5 +193,11 @@ public class World {
 			return bullets2;
 		}
 
-	 
+	 public void TankGameOver(){
+		 checkGameOver = true;
+	 }
+
+	 public void TankGameOver2(){
+		 checkGameOver2 = true;
+	 }
 }

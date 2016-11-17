@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -29,6 +30,7 @@ public class Tank2 {
 	private SpriteBatch batch;
     private int Max_Bullet = 10;
 	private int countBullet =0;
+	private Sound shoot;
     private static final int [][] DIR_OFFSETS = new int [][] {
 	        {0,0},
 	        {0,-1},
@@ -51,6 +53,7 @@ public class Tank2 {
 	        
 	        tank2Rect = new Rectangle(tankSprite.getX(), tankSprite.getY(), tankSprite.getHeight(), tankSprite.getWidth());
 	        tank2Rect.setPosition(tankSprite.getX(), tankSprite.getY());
+	    shoot = Gdx.audio.newSound(Gdx.files.internal("shoot.mp3"));
 	}
 	
 	Vector2 getPosition(){
@@ -104,6 +107,7 @@ public class Tank2 {
 	    if(Gdx.input.isKeyJustPressed(Keys.G)){
 			shoot();
 			countBullet++;
+			shoot.play();
 	    }
 	    for (Bullet2 bullet2 : bullets2) {
 	    	bullet2.render();

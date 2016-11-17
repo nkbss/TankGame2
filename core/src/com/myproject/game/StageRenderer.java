@@ -34,7 +34,9 @@ public class StageRenderer {
                     batch.draw(brickImage, x, y);
                 } else if(stage.hasMetalAt(r, c)) {
                     batch.draw(MetalImage, x, y);
-                }else if(stage.hasBaseAt(r, c)) {
+                }else if(stage.hasBaseAt1(r, c)) {
+                    batch.draw(baseImage, x, y);
+                }else if(stage.hasBaseAt2(r, c)) {
                     batch.draw(baseImage, x, y);
                 }else if(stage.hasExploreAt(r, c)) {
                     batch.draw(exploreImage, x, y);

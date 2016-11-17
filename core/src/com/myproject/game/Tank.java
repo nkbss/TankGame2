@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,7 +26,8 @@ public class Tank {
     public int nextDirection;
     ArrayList <Bullet> bullets;
     World world;
-	private Sprite tankSprite;
+    private Sound shoot;
+    private Sprite tankSprite;
 	private Texture tankTexture;
 	private SpriteBatch batch;
 	private Rectangle tankRect;
@@ -45,7 +47,6 @@ public class Tank {
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
         this.stage = stage;
-        
         batch = TankGame.batch;
         tankImg = "myTank.png";
         tankTexture = new Texture(tankImg);
@@ -55,6 +56,7 @@ public class Tank {
         
         tankRect = new Rectangle(tankSprite.getX(), tankSprite.getY(), tankSprite.getHeight(), tankSprite.getWidth());
         tankRect.setPosition(tankSprite.getX(), tankSprite.getY());
+        shoot = Gdx.audio.newSound(Gdx.files.internal("shoot.mp3"));
     }    
  
     public Vector2 getPosition() {
@@ -90,6 +92,7 @@ public class Tank {
 	    if(Gdx.input.isKeyJustPressed(Keys.L)){
 			shoot();
 			countBullet++;
+			shoot.play();
 	    }
 	    
 	    for (Bullet bullet : bullets) {

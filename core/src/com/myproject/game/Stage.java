@@ -14,7 +14,7 @@ public class Stage {
 	public Stage(){
         STAGE = new StringBuilder[19];
         STAGE[0] = new StringBuilder("#####################");
-        STAGE[1] = new StringBuilder("#........b$b........#");
+        STAGE[1] = new StringBuilder("#........b2b........#");
         STAGE[2] = new StringBuilder("#........bbb........#");
         STAGE[3] = new StringBuilder("#...bb.........bb...#");
         STAGE[4] = new StringBuilder("#...bb.........bb...#");
@@ -30,7 +30,7 @@ public class Stage {
         STAGE[14] = new StringBuilder("#........bbb........#");
         STAGE[15] = new StringBuilder("#.....bb..S..bb.....#");
         STAGE[16] = new StringBuilder("#........bbb........#");
-        STAGE[17] = new StringBuilder("#........b$b........#");
+        STAGE[17] = new StringBuilder("#........b1b........#");
         STAGE[18] = new StringBuilder("#####################");
         height = STAGE.length;
         width = STAGE[0].length();	
@@ -57,10 +57,14 @@ public class Stage {
         return STAGE[r].charAt(c) == 'S';
     }
    
-    public boolean hasBaseAt(int r, int c) {
-        return STAGE[r].charAt(c) == '$';
+    public boolean hasBaseAt1(int r, int c) {
+        return STAGE[r].charAt(c) == '1';
     }
 
+    public boolean hasBaseAt2(int r, int c) {
+        return STAGE[r].charAt(c) == '2';
+    }
+    
     public boolean hasExploreAt(int r, int c) {
         return STAGE[r].charAt(c) == 'e';
     }
