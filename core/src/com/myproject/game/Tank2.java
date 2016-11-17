@@ -45,7 +45,7 @@ public class Tank2 {
 		position = new Vector2(x,y);
 		bullets2 = new ArrayList<Bullet2>();
 		batch = TankGame.batch;
-		tankImg = "myTankDown.png";
+		tankImg = "myTankDown2.png";
 		tankTexture = new Texture(tankImg);
 	    tankSprite = new Sprite(tankTexture);
 	    tankSprite.setPosition(position.x - WorldRenderer.BLOCK_SIZE / 2,

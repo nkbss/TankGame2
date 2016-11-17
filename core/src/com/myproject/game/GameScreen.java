@@ -3,6 +3,7 @@ package com.myproject.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -19,14 +20,12 @@ public class GameScreen extends ScreenAdapter{
 	Bullet bullet;
 	public static BitmapFont font;
 	public static SpriteBatch batch;
-	private Sound bg;
-	private Sound go;
+	private Music go;
 	public GameScreen(TankGame tankGame) {
 	       this.tankGame = tankGame;
 	       world = new World(tankGame);
 	       worldRenderer = new WorldRenderer(tankGame,world);
-	       bg = Gdx.audio.newSound(Gdx.files.internal("gameTank.mp3"));
-	       go = Gdx.audio.newSound(Gdx.files.internal("gameover.mp3"));
+	       go = Gdx.audio.newMusic(Gdx.files.internal("gameover.mp3"));
 	}
 	
 	public void update(float delta) {
@@ -62,33 +61,35 @@ public class GameScreen extends ScreenAdapter{
 			Tank2 tank2 = world.getTank2();
 			
 			if(Gdx.input.isKeyPressed(Keys.W)){
-					tank2.setNextDirection(Tank2.DIRECTION_UP);
+				tank2.setNextDirection(Tank2.DIRECTION_UP);
+				tank2.setNextImg("myTank2.png");
 			}
 			
 			if(Gdx.input.isKeyPressed(Keys.S)) {
-		            tank2.setNextDirection(Tank.DIRECTION_DOWN);
-		        }	
+				tank2.setNextDirection(Tank.DIRECTION_DOWN);
+				tank2.setNextImg("myTankDown2.png");
+			}	
 		    
 			if(Gdx.input.isKeyPressed(Keys.D)) {
-		            tank2.setNextDirection(Tank.DIRECTION_RIGHT);
-		        }
+				tank2.setNextDirection(Tank.DIRECTION_RIGHT);
+		        tank2.setNextImg("myTankRight2.png");
+			}
 		        
 			if(Gdx.input.isKeyPressed(Keys.A)) {
-		            tank2.setNextDirection(Tank.DIRECTION_LEFT);
-		        }
+		        tank2.setNextDirection(Tank.DIRECTION_LEFT);
+		        tank2.setNextImg("myTankLeft2.png");
+			}
 		}
 	
 		public void render(float delta) {
 	        if(World.checkGameOver || World.checkGameOver2){
 	        	if(World.checkGameOver){
 	        		GameOver(1);
-	        		bg.stop();
 	        		go.play();
 	        		
 	        	}
 	        	else{
 	        		GameOver(2);
-	        		bg.stop();
 	        		go.play();
 	        	}
 	        }
@@ -97,7 +98,6 @@ public class GameScreen extends ScreenAdapter{
 	        	Gdx.gl.glClearColor(0, 0, 0, 1);
 	        	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	        	worldRenderer.render(delta);
-	        	bg.play();
 	        }
 	  }
 
