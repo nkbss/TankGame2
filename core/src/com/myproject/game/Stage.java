@@ -9,7 +9,6 @@ public class Stage {
 	public static StringBuilder STAGE[];
 	private int height;
 	private int width;
-	private static ArrayList<Bullet> bullets;
 	private static Tank tank;
 	public Stage(){
         STAGE = new StringBuilder[19];
@@ -34,7 +33,6 @@ public class Stage {
         STAGE[18] = new StringBuilder("#####################");
         height = STAGE.length;
         width = STAGE[0].length();	
-        bullets = new ArrayList<Bullet>();
 	}
 	
 	public int getHeight(){

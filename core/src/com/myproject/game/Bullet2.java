@@ -9,7 +9,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Bullet2 {
-
 	private Vector2 positionBullet2;
 	private Vector2 positionSpriteBullet2;
 	private int currentDirection = 1;
@@ -44,7 +43,9 @@ public class Bullet2 {
     	positionSpriteBullet2 = new Vector2();
     	positionSpriteBullet2.x = bullet2Sprite.getX();
     	positionSpriteBullet2.y = bullet2Sprite.getY();
-    	bullet2Rect =  new Rectangle (bullet2Sprite.getX(),bullet2Sprite.getY(),bullet2Sprite.getHeight(),bullet2Sprite.getWidth());
+    	bullet2Rect =  new Rectangle (bullet2Sprite.getX(),bullet2Sprite.getY(),
+    			bullet2Sprite.getHeight(),bullet2Sprite.getWidth());
+    	
     	bullet2Rect.setPosition(bullet2Sprite.getX(),bullet2Sprite.getY());
     }
     
@@ -90,6 +91,4 @@ public class Bullet2 {
     	batch.end();
     	bullet2Rect.setPosition(bullet2Sprite.getX(),bullet2Sprite.getY());
     }
-
-
 }

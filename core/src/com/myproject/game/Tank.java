@@ -78,7 +78,7 @@ public class Tank {
 		bullets.add(new Bullet(this));
 	}
      
-	 public void update() {
+	public void update() {
 		 if(isAtCenter()) {
 			 if(canMoveInDirection(nextDirection)) {
 				 currentDirection = nextDirection;    
@@ -100,15 +100,15 @@ public class Tank {
 	    }
 	 }
 	 
-	 private int getRow() {
+	private int getRow() {
 	        return ((int)position.y) / WorldRenderer.BLOCK_SIZE; 
 	    }
 	 
-	 private int getColumn() {
+	private int getColumn() {
 	        return ((int)position.x) / WorldRenderer.BLOCK_SIZE; 
 	    }
 	 
-	 private boolean canMoveInDirection(int dir) {
+	private boolean canMoveInDirection(int dir) {
 	        int newRow = this.getRow() + DIR_OFFSETS[dir][1]; 
 	        int newCol = this.getColumn() + DIR_OFFSETS[dir][0]; 
 	        if(Stage.STAGE[newRow].charAt(newCol) != '.'){

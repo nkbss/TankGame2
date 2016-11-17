@@ -22,7 +22,7 @@ public class GameScreen extends ScreenAdapter{
 	public static SpriteBatch batch;
 	private Music go;
 	public GameScreen(TankGame tankGame) {
-	       this.tankGame = tankGame;
+		   this.tankGame = tankGame;
 	       world = new World(tankGame);
 	       worldRenderer = new WorldRenderer(tankGame,world);
 	       go = Gdx.audio.newMusic(Gdx.files.internal("gameover.mp3"));
@@ -57,25 +57,25 @@ public class GameScreen extends ScreenAdapter{
         }
 	}
 	
-		private void updateTank2Direction(){
-			Tank2 tank2 = world.getTank2();
+	private void updateTank2Direction(){
+		Tank2 tank2 = world.getTank2();
 			
-			if(Gdx.input.isKeyPressed(Keys.W)){
+		if(Gdx.input.isKeyPressed(Keys.W)){
 				tank2.setNextDirection(Tank2.DIRECTION_UP);
 				tank2.setNextImg("myTank2.png");
 			}
 			
-			if(Gdx.input.isKeyPressed(Keys.S)) {
+		if(Gdx.input.isKeyPressed(Keys.S)) {
 				tank2.setNextDirection(Tank.DIRECTION_DOWN);
 				tank2.setNextImg("myTankDown2.png");
 			}	
 		    
-			if(Gdx.input.isKeyPressed(Keys.D)) {
+		if(Gdx.input.isKeyPressed(Keys.D)) {
 				tank2.setNextDirection(Tank.DIRECTION_RIGHT);
 		        tank2.setNextImg("myTankRight2.png");
 			}
 		        
-			if(Gdx.input.isKeyPressed(Keys.A)) {
+		if(Gdx.input.isKeyPressed(Keys.A)) {
 		        tank2.setNextDirection(Tank.DIRECTION_LEFT);
 		        tank2.setNextImg("myTankLeft2.png");
 			}

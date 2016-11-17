@@ -7,7 +7,6 @@ public class StageRenderer {
 	private Stage stage;
 	private SpriteBatch batch;
 	private Texture wallImage;
-	private Texture dotImage;
 	private Texture brickImage;
 	private Texture MetalImage;
 	private Texture baseImage;

@@ -48,7 +48,9 @@ public class Bullet {
     	posSpriteBullet = new Vector2();
     	posSpriteBullet.x = bulletSprite.getX();
     	posSpriteBullet.y = bulletSprite.getY();
-    	bulletRect =  new Rectangle (bulletSprite.getX(),bulletSprite.getY(),bulletSprite.getHeight(),bulletSprite.getWidth());
+    	bulletRect =  new Rectangle (bulletSprite.getX(),bulletSprite.getY(),
+    			bulletSprite.getHeight(),bulletSprite.getWidth());
+    	
     	bulletRect.setPosition(bulletSprite.getX(),bulletSprite.getY());
     }
 
@@ -72,17 +74,6 @@ public class Bullet {
 	    posSpriteBullet.y += SPEED * DIR_OFFSETS[currentDirection][1];
 	 }
 	
-	public void render(){
-		update();
-		bulletSprite.setPosition(posSpriteBullet.x,posSpriteBullet.y);
-		bulletImg = new Texture(setBulletImg(currentDirection));
-		batch = TankGame.batch;
-		batch.begin();
-		bulletSprite.draw(batch);
-		batch.end();
-		bulletRect.setPosition(bulletSprite.getX(),bulletSprite.getY());
-	}
-	
 	public float getX() {
 		return bulletSprite.getX();
 	}
@@ -93,5 +84,16 @@ public class Bullet {
 
 	public Rectangle getRect(){
 		return bulletRect;
+	}
+	
+	public void render(){
+		update();
+		bulletSprite.setPosition(posSpriteBullet.x,posSpriteBullet.y);
+		bulletImg = new Texture(setBulletImg(currentDirection));
+		batch = TankGame.batch;
+		batch.begin();
+		bulletSprite.draw(batch);
+		batch.end();
+		bulletRect.setPosition(bulletSprite.getX(),bulletSprite.getY());
 	}
 }

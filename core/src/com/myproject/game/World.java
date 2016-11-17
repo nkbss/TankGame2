@@ -17,7 +17,7 @@ public class World {
 	private Sound explore;
 	World(TankGame TankGame) {
 		tank = new Tank(425,875,stage);
-		tank2 = new Tank2(75,225,stage);
+		tank2 = new Tank2(625,75,stage);
 		stage = new Stage();
 		bullets = new ArrayList<Bullet>();
 		bullets2 =new ArrayList<Bullet2>();
