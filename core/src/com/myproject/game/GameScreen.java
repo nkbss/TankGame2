@@ -84,12 +84,12 @@ public class GameScreen extends ScreenAdapter{
 		public void render(float delta) {
 	        if(World.checkGameOver || World.checkGameOver2){
 	        	if(World.checkGameOver){
-	        		GameOver(1);
+	        		GameOver(2);
 	        		go.play();
 	        		
 	        	}
 	        	else{
-	        		GameOver(2);
+	        		GameOver(1);
 	        		go.play();
 	        	}
 	        }
@@ -109,7 +109,7 @@ public class GameScreen extends ScreenAdapter{
 			font.setColor(Color.WHITE);
 			font.getData().setScale(2);
 			batch.begin();
-			font.draw(batch,"PLAYER "+ i +" GAMEOVER" , 400,500);
+			font.draw(batch,"PLAYER "+ i +" WIN" , 400,500);
 			batch.end();
 		}
 }
