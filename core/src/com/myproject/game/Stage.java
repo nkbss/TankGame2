@@ -9,7 +9,6 @@ public class Stage {
 	public static StringBuilder STAGE[];
 	private int height;
 	private int width;
-	private static Tank tank;
 	public Stage(){
         STAGE = new StringBuilder[19];
         STAGE[0] = new StringBuilder("#####################");
