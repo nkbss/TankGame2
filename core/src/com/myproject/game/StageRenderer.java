@@ -14,11 +14,11 @@ public class StageRenderer {
 	public StageRenderer(SpriteBatch batch, Stage stage){
 	this.stage = stage;
 	this.batch = batch;
-	wallImage = new Texture("edge.png");
-	brickImage = new Texture("brick.png");
-	MetalImage = new Texture("metal.png");
+	wallImage = new Texture("edge.PNG");
+	brickImage = new Texture("brick.PNG");
+	MetalImage = new Texture("metal.PNG");
 	baseImage = new Texture("base.png");
-	exploreImage = new Texture("explore.png");
+	exploreImage = new Texture("explore.PNG");
 	}
 	
 	public void render(){
